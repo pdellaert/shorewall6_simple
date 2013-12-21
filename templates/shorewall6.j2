@@ -1,0 +1,45 @@
+# prevent startup with default configuration
+# set the following varible to 1 in order to allow Shorewall to start
+
+startup={% if shorewall6_startup is defined %}{{ shorewall6_startup }}{% else %}0{% endif %}
+
+# If your Shorewall configuration requires detection of the ip address of a ppp
+# interface, you must list such interfaces in "wait_interface" to get Shorewall
+# to wait until the interface is configured. Otherwise the script will fail
+# because it won't be able to detect the IP address.
+#
+# Example:
+#    wait_interface="ppp0"
+# or
+#    wait_interface="ppp0 ppp1"
+# or, if you have defined  in /etc/shorewall6/params
+#    wait_interface=
+{% if shorewall6_wait_interface is defined %}wait_interface="{{ shorewall6_wait_interface }}"{% endif %}
+
+#
+# Global start/restart/stop options
+#
+OPTIONS="{% if shorewall6_options is defined %}{{ shorewall6_options }}{% endif %}"
+
+#
+# Start options
+#
+STARTOPTIONS="{% if shorewall6_startoptions is defined %}{{ shorewall6_startoptions }}{% endif %}"
+
+#
+# Restart options
+#
+RESTARTOPTIONS="{% if shorewall6_restartoptions is defined %}{{ shorewall6_restartoptions }}{% endif %}"
+
+#
+# Init Log -- if /dev/null, use the STARTUP_LOG defined in shorewall6.conf
+#
+INITLOG={% if shorewall6_initlog is defined %}{{ shorewall6_initlog }}{% else %}/dev/null{% endif %}
+
+#
+# Set this to 1 to cause '/etc/init.d/shorewall6 stop' to place the firewall in
+# a safe state rather than to open it
+#
+SAFESTOP={% if shorewall6_safestop is defined %}{{ shorewall6_safestop }}{% else %}0{% endif %}
+
+# EOF

@@ -1,0 +1,29 @@
+---
+shorewall6_enabled: "Yes"
+
+shorewall6_zones:
+- zone: "fw"
+  type: "firewall"
+- zone: "net"
+  type: "ipv6"
+
+shorewall6_interfaces: 
+- interface: "eth0"
+  zone: "net"
+  broadcast: "detect"
+  options: "dhcp,tcpflags,nosmurfs"
+
+shorewall6_policies:
+- source: "$FW"
+  destination: "net"
+  policy: "ACCEPT"
+- source: "net"
+  destination: "$FW"
+  policy: "ACCEPT"
+- source: "all"
+  destination: "all"
+  policy: "DROP"
+  log_level: "info"
+
+shorewall6_rules: []
+

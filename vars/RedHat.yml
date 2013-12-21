@@ -1,0 +1,10 @@
+---
+shorewall6_package: "shorewall6"
+shorewall6_zones_file: "/etc/shorewall6/zones"
+shorewall6_interfaces_file: "/etc/shorewall6/interfaces"
+shorewall6_policy_file: "/etc/shorewall6/policy"
+shorewall6_rules_file: "/etc/shorewall6/rules"
+shorewall6_config_file: "/etc/shorewall6/shorewall6.conf"
+shorewall6_service_config: "/etc/default/shorewall6"
+shorewall6_service: "shorewall6"
+
